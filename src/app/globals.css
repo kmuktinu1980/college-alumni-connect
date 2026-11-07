@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette: Brahmaputra river blue on a cool, slightly green-grey ground; amber marks match quality. */
+:root {
+  --bg: 241 244 243;
+  --surface: 255 255 255;
+  --sunk: 230 236 234;
+  --ink: 19 34 40;
+  --muted: 86 106 112;
+  --line: 210 220 218;
+  --river: 27 94 120;
+  --river-ink: 255 255 255;
+  --river-soft: 220 234 240;
+  --amber: 168 98 15;
+  --amber-soft: 245 230 206;
+  --ok: 44 116 72;
+  --ok-soft: 219 238 225;
+  --bad: 163 58 46;
+  --bad-soft: 246 222 218;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: 13 22 26;
+    --surface: 20 33 38;
+    --sunk: 26 42 48;
+    --ink: 227 236 236;
+    --muted: 147 166 170;
+    --line: 40 59 65;
+    --river: 107 182 210;
+    --river-ink: 7 21 27;
+    --river-soft: 22 49 59;
+    --amber: 227 167 92;
+    --amber-soft: 56 41 19;
+    --ok: 123 198 148;
+    --ok-soft: 22 50 36;
+    --bad: 238 142 128;
+    --bad-soft: 60 30 26;
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  body { @apply bg-bg text-ink font-sans antialiased; font-size: 15px; line-height: 1.55; }
+  h1, h2, h3 { @apply font-display; text-wrap: balance; line-height: 1.15; }
+  a { @apply text-river; }
+  :focus-visible { outline: 2px solid rgb(var(--river)); outline-offset: 2px; }
+}
+
+@layer components {
+  .page { @apply mx-auto w-full max-w-page px-4; }
+  .label-cap { @apply text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-muted; }
+  .lede { @apply max-w-[62ch] text-muted; }
+  .panel { @apply grid gap-4 rounded-[10px] border border-line bg-surface p-5; }
+  .card { @apply grid min-w-0 gap-3 rounded-[10px] border border-line bg-surface p-[18px]; }
+  .empty { @apply grid gap-1.5 rounded-[10px] border border-dashed border-line bg-surface p-6 text-muted; }
+  .field { @apply grid min-w-0 gap-1.5; }
+  .field-label { @apply text-[0.84rem] font-semibold; }
+  .hint { @apply text-[0.78rem] text-muted; }
+  .err { @apply text-[0.86rem] text-bad; }
+  .input {
+    @apply w-full min-w-0 rounded-lg border border-line bg-bg px-3 py-2 text-[0.95rem] text-ink placeholder:text-muted/70;
+  }
+  textarea.input { @apply min-h-[84px] resize-y leading-snug; }
+  .btn {
+    @apply inline-flex items-center gap-1.5 rounded-lg border border-river bg-river px-4 py-2 text-[0.9rem] font-semibold text-river-ink no-underline transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost { @apply bg-transparent text-river; }
+  .btn-quiet { @apply border-line bg-transparent text-ink; }
+  .btn-danger { @apply border-bad bg-transparent text-bad; }
+  .btn-sm { @apply px-3 py-1 text-[0.82rem]; }
+  .linkbtn { @apply cursor-pointer text-river underline underline-offset-2 disabled:cursor-not-allowed disabled:opacity-50; }
+  .chip { @apply rounded-md bg-sunk px-2 py-0.5 text-[0.76rem]; }
+  .pill { @apply rounded-full px-2.5 py-0.5 text-[0.72rem] font-semibold; }
+  .pill-open { @apply bg-ok-soft text-ok; }
+  .pill-booked { @apply bg-amber-soft text-amber; }
+  .pill-off { @apply bg-bad-soft text-bad; }
+  .pill-role { @apply bg-river-soft text-river; }
+  .check-chip {
+    @apply inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-line bg-bg px-3 py-1 text-[0.86rem] has-[:checked]:border-river has-[:checked]:bg-river-soft;
+  }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

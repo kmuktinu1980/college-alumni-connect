@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+tests/stack/.bin/
+tests/stack/logs/
+tests/stack/.env.test
